@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Vehicle Contact Card - Samir Yadav</title>
+  <meta name="description" content="Personal vehicle contact card for Samir Yadav (Maruti Suzuki Victoris LXI CNG).">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #ffffff;
+      color: #0f172a;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem 1rem;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container {
+      width: 100%;
+      max-width: 440px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #475569;
+      margin-bottom: 0.75rem;
+    }
+    .headline {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: #000000;
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+      text-wrap: balance;
+    }
+    .subtext {
+      font-size: 1rem;
+      color: #334155;
+      line-height: 1.5;
+      margin-bottom: 1.75rem;
+      max-width: 360px;
+    }
+    .illustration-card {
+      width: 100%;
+      background: #fafafa;
+      border: 1px solid #e2e8f0;
+      border-radius: 1.25rem;
+      padding: 1.5rem 1.25rem;
+      margin-bottom: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .car-svg {
+      width: 180px;
+      height: 76px;
+      margin-bottom: 1rem;
+    }
+    .owner-name {
+      font-size: 1.375rem;
+      font-weight: 800;
+      color: #000000;
+      letter-spacing: -0.015em;
+      margin-bottom: 0.25rem;
+    }
+    .vehicle-model {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: #475569;
+    }
+    .actions {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+      margin-bottom: 2rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      width: 100%;
+      min-height: 54px;
+      padding: 0.875rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      border-radius: 0.875rem;
+      transition: all 0.15s ease;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn:active {
+      transform: scale(0.98);
+    }
+    .btn-call {
+      background-color: #000000;
+      color: #ffffff;
+      border: 1px solid #000000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+    .btn-call:hover {
+      background-color: #1e293b;
+    }
+    .btn-whatsapp {
+      background-color: #25D366;
+      color: #ffffff;
+      border: 1px solid #20bd5a;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.22);
+    }
+    .btn-whatsapp:hover {
+      background-color: #20bd5a;
+    }
+    .secondary-options {
+      display: flex;
+      gap: 0.5rem;
+      width: 100%;
+      margin-top: 0.25rem;
+    }
+    .btn-secondary {
+      flex: 1;
+      min-height: 44px;
+      padding: 0.625rem 0.75rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      background-color: #ffffff;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+      border-radius: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+    .btn-secondary:hover {
+      background-color: #f8fafc;
+      border-color: #94a3b8;
+    }
+    .btn-secondary:active {
+      background-color: #f1f5f9;
+    }
+    .footer {
+      border-top: 1px solid #f1f5f9;
+      padding-top: 1.5rem;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .footer-primary {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #334155;
+    }
+    .footer-secondary {
+      font-size: 0.75rem;
+      color: #64748b;
+      letter-spacing: 0.04em;
+    }
+    .toast {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background-color: #0f172a;
+      color: #ffffff;
+      padding: 0.625rem 1.25rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 50;
+      pointer-events: none;
+    }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <div class="badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+      <span>Vehicle Assistance</span>
+    </div>
+
+    <h1 class="headline">Need to contact the car owner?</h1>
+    <p class="subtext">Is my car blocking your way? Please contact me. I'll be happy to assist you.</p>
+
+    <div class="illustration-card">
+      <!-- Minimalist elegant vector car illustration -->
+      <svg class="car-svg" viewBox="0 0 240 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Ground shadow line -->
+        <ellipse cx="120" cy="88" rx="90" ry="4" fill="#E2E8F0"/>
+        <!-- Car Body Silhouette -->
+        <path d="M25 64C23 60 25 54 30 50L55 46L85 24C92 18 102 16 112 16H160C170 16 178 21 184 29L202 50C214 52 220 58 220 66C220 72 216 75 210 75H195C193 67 186 61 177 61C168 61 161 67 159 75H93C91 67 84 61 75 61C66 61 59 67 57 75H35C29 75 25 70 25 64Z" fill="#0F172A"/>
+        <!-- Cabin Windows -->
+        <path d="M89 27L65 47H118V22H112C102 22 95 24 89 27Z" fill="#F1F5F9" opacity="0.9"/>
+        <path d="M124 22V47H193L179 28C175 24 169 22 163 22H124Z" fill="#F1F5F9" opacity="0.9"/>
+        <!-- Window Pillar Divider -->
+        <rect x="119" y="21" width="4" height="26" fill="#0F172A"/>
+        <!-- Headlight and Taillight -->
+        <path d="M214 56L205 52V62L215 60C217 58 217 57 214 56Z" fill="#F59E0B"/>
+        <path d="M27 55L35 53V61L28 60C26 58 26 57 27 55Z" fill="#EF4444"/>
+        <!-- Wheels -->
+        <!-- Front Wheel -->
+        <circle cx="177" cy="74" r="16" fill="#0F172A"/>
+        <circle cx="177" cy="74" r="11" fill="#E2E8F0" stroke="#0F172A" stroke-width="3"/>
+        <circle cx="177" cy="74" r="4" fill="#0F172A"/>
+        <!-- Rear Wheel -->
+        <circle cx="75" cy="74" r="16" fill="#0F172A"/>
+        <circle cx="75" cy="74" r="11" fill="#E2E8F0" stroke="#0F172A" stroke-width="3"/>
+        <circle cx="75" cy="74" r="4" fill="#0F172A"/>
+      </svg>
+
+      <div class="owner-name">Samir Yadav</div>
+      <div class="vehicle-model">Maruti Suzuki Victoris LXI CNG</div>
+    </div>
+
+    <div class="actions">
+      <!-- Button 1: CALL OWNER -->
+      <a href="tel:+918708314467" class="btn btn-call" id="callBtn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <span>CALL OWNER</span>
+      </a>
+
+      <!-- Button 2: WHATSAPP MESSAGE -->
+      <a href="https://wa.me/918708314467?text=Hello%20Samir%2C%20your%20car%20may%20be%20blocking%20the%20way.%20Could%20you%20please%20check%20and%20move%20it%3F%20Thank%20you" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" id="whatsappBtn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.456 5.711 1.457h.004c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        <span>WHATSAPP MESSAGE</span>
+      </a>
+
+      <!-- Quick Secondary Controls for basement / poor signal parking -->
+      <div class="secondary-options">
+        <a href="sms:+918708314467?body=Hello%20Samir%2C%20your%20car%20may%20be%20blocking%20the%20way.%20Could%20you%20please%20check%20and%20move%20it%3F%20Thank%20you" class="btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          <span>Send SMS</span>
+        </a>
+        <button type="button" class="btn-secondary" id="copyBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          <span id="copyText">Copy Number</span>
+        </button>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-primary">Thank you for helping keep the road clear.</div>
+      <div class="footer-secondary">Personal Vehicle Contact Card</div>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast">Phone number copied to clipboard</div>
+
+  <script>
+    // Copy number functionality
+    var copyBtn = document.getElementById('copyBtn');
+    var copyText = document.getElementById('copyText');
+    var toast = document.getElementById('toast');
+    
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function() {
+        var phoneNumber = '+918708314467';
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(phoneNumber).then(function() {
+            showToast('Copied +91 8708314467');
+          }).catch(function() {
+            fallbackCopy(phoneNumber);
+          });
+        } else {
+          fallbackCopy(phoneNumber);
+        }
+      });
+    }
+
+    function fallbackCopy(text) {
+      var textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-9999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        showToast('Copied +91 8708314467');
+      } catch (err) {
+        showToast('+91 87083 14467');
+      }
+      document.body.removeChild(textArea);
+    }
+
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(function() {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+  </script>
+</body>
+</html>
